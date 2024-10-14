@@ -3,7 +3,7 @@ name: Configure AWS Credentials and Deploy Billing Alerts
 on:
   push:
     branches:
-      - feature
+      - feature  # Change this to the branch you want to trigger this action
 
 permissions:
   id-token: write
@@ -20,14 +20,14 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::YOUR_ACCOUNT_ID:role/GHE-AWS-OIDC-ROLE
+          role-to-assume: arn:aws:iam::014498661566:role/GHE-AWS-OIDC-ROLE  # Update with your actual account ID
           role-session-name: github-actions-session
           aws-region: us-east-1
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.9.5
+          terraform_version: 1.9.5  # Confirm this version is correct and needed
 
       - name: Terraform Init
         run: terraform init
